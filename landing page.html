@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduWeb - Learn Web Development</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    header {
+      background-color: #1b4ea0;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #337ce3;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+    }
+
+    nav a {
+      color: rgb(248, 242, 242);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 400px;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .box {
+      background: #2971b8;
+      color: rgb(0, 0, 0);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(184, 66, 66, 0.05);
+    }
+
+    #symbolCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    z-index: -10;
+    background: linear-gradient(to bottom, #3db5e8, #84c2d6, #2c5364); /* subtle night sky effect */
+    pointer-events: none; /* allow interaction with elements above */
+    }
+
+
+    footer {
+      background-color: #1e293b;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EduWeb</h1>
+    <p>Empowering You Through Web Development Education</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Image Slider Section -->
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="https://www.dremendo.com/html-tutorial/images/html-tutorial.jpg" alt="Slide 1" /></div>
+      <div class="swiper-slide"><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220704104359/Roadmap-to-Learn-JavaScript-For-Beginners.jpg" alt="Slide 2" /></div>
+      <div class="swiper-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8SrkrVgZzLFRM_LDYkUPLi1geitrh9L6XWQ&s" alt="Slide 3" /></div>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>EduWeb is a cutting-edge education platform dedicated to transforming passionate learners into skilled web developers. We specialize in delivering hands-on, practical training across a wide range of web technologies including HTML, CSS, JavaScript, React, and other modern frameworks.</p>
+    <p>Whether you're just starting your journey in web development or looking to upgrade your skills, EduWeb offers structured learning paths, interactive coding exercises, and real-world projects to build confidence and competence.</p>
+    <p>Our curriculum is designed by industry experts and regularly updated to keep pace with the latest trends and tools in web development.</p>
+    <p>We believe in learning by doing — that’s why every course includes mini-projects, challenges, and portfolio-worthy assignments. You won’t just read about code — you’ll write it, debug it, and build fully functional applications.</p>
+    <p>At EduWeb, you're not just a student — you're a developer in the making. Join our supportive community, gain access to professional mentorship, and take your first step toward a career in tech with a solid foundation built the right way.</p>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="box">
+        <h3>HTML & CSS Bootcamp</h3>
+        <p>Learn the foundations of web development through engaging lessons and live coding.</p>
+      </div>
+      <div class="box">
+        <h3>JavaScript Essentials</h3>
+        <p>Master the programming language of the web and build dynamic websites.</p>
+      </div>
+      <div class="box">
+        <h3>React Projects</h3>
+        <p>Build interactive front-end applications using React and real-world APIs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@eduweb.com</p>
+    <p>Phone: +123 456 7890</p>
+  </section>
+
+  <canvas id="symbolCanvas"></canvas>
+
+  <footer>
+    &copy; 2025 EduWeb. All rights reserved.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+      },
+      speed: 800,
+    });
+  </script>
+
+<script>
+    const canvas = document.getElementById("symbolCanvas");
+    const ctx = canvas.getContext("2d");
+    let symbols = [];
+
+    const symbolTexts = ["</>", "<div>", "JS", "{ }", "<React>", "<h1>", "<CSS>", "<HTML>"];
+    const fontSize = 24;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    function createSymbol() {
+        return {
+            x: Math.random() * canvas.width,
+            y: Math.random() * -canvas.height,
+            speed: Math.random() * 1.5 + 0.5,
+            text: symbolTexts[Math.floor(Math.random() * symbolTexts.length)],
+            opacity: Math.random() * 0.6 + 0.4,
+            size: Math.floor(Math.random() * 10 + 16)
+        };
+    }
+
+    for (let i = 0; i < 100; i++) {
+        symbols.push(createSymbol());
+    }
+
+    function animateSymbols() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = `${fontSize}px Monospace`;
+
+        for (let s of symbols) {
+            ctx.globalAlpha = s.opacity;
+            ctx.fillStyle = "#ffffff";
+            ctx.font = `${s.size}px 'Courier New'`;
+            ctx.fillText(s.text, s.x, s.y);
+
+            s.y += s.speed;
+            if (s.y > canvas.height) {
+                s.y = 0;
+                s.x = Math.random() * canvas.width;
+                s.text = symbolTexts[Math.floor(Math.random() * symbolTexts.length)];
+            }
+        }
+
+        ctx.globalAlpha = 1.0;
+        requestAnimationFrame(animateSymbols);
+    }
+
+    animateSymbols();
+</script>
+
+
+</body>
+</html>
